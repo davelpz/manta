@@ -14,4 +14,7 @@ public class PixelRGB extends Vec {
         super(e0,e1,e2);
     }
 
+    public String toString() {
+        return "PixelRGB(" + e[0] + "," + e[1] + "," + e[2] + ")";
+    }
 }

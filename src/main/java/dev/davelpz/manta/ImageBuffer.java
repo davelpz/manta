@@ -26,7 +26,12 @@ public class ImageBuffer {
         this(width, height, new PixelRGB(0, 0, 0));
     }
 
+    public ImageBuffer(double width, double height) {
+        this((int)width,(int)height);
+    }
+
     public void setPixel(int x, int y, PixelRGB pixel) {
+        //System.out.println(""+x+","+y+","+pixel);
         buffer[x][y] = pixel;
     }
 

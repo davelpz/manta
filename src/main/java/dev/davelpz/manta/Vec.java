@@ -1,7 +1,7 @@
 package dev.davelpz.manta;
 
 public class Vec {
-    float[] e = new float[3];
+    double[] e = new double[3];
 
     public Vec() {
     }
@@ -13,36 +13,36 @@ public class Vec {
     }
 
     public Vec(double e0, double e1, double e2) {
-        e[0] = (float) e0;
-        e[1] = (float) e1;
-        e[2] = (float) e2;
+        e[0] = e0;
+        e[1] = e1;
+        e[2] = e2;
     }
 
     public static Vec clone(Vec t) {
         return new Vec(t.e[0], t.e[1], t.e[2]);
     }
 
-    public float x() {
+    public double x() {
         return e[0];
     }
 
-    public float y() {
+    public double y() {
         return e[1];
     }
 
-    public float z() {
+    public double z() {
         return e[2];
     }
 
-    public float r() {
+    public double r() {
         return e[0];
     }
 
-    public float g() {
+    public double g() {
         return e[1];
     }
 
-    public float b() {
+    public double b() {
         return e[2];
     }
 
@@ -54,19 +54,19 @@ public class Vec {
         return new Vec(-a.x(), -a.y(), -a.z());
     }
 
-    public float get(int i) {
+    public double get(int i) {
         return e[i];
     }
 
-    public void set(int i, float value) {
+    public void set(int i, double value) {
         e[i] = value;
     }
 
-    public float length() {
-        return (float) Math.sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
+    public double length() {
+        return Math.sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
     }
 
-    public float squared_length() {
+    public double squared_length() {
         return e[0] * e[0] + e[1] * e[1] + e[2] * e[2];
     }
 
@@ -75,7 +75,7 @@ public class Vec {
     }
 
     public void make_unit_vector() {
-        float k = 1.0f / length();
+        double k = 1.0f / length();
         e[0] *= k;
         e[1] *= k;
         e[2] *= k;
@@ -97,19 +97,19 @@ public class Vec {
         return new Vec(a.x() / b.x(), a.y() / b.y(), a.z() / b.z());
     }
 
-    public static Vec mul(Vec a, float t) {
+    public static Vec mul(Vec a, double t) {
         return new Vec(a.x() * t, a.y() * t, a.z() * t);
     }
 
-    public static Vec mul(float t, Vec a) {
+    public static Vec mul(double t, Vec a) {
         return new Vec(a.x() * t, a.y() * t, a.z() * t);
     }
 
-    public static Vec div(Vec a, float t) {
+    public static Vec div(Vec a, double t) {
         return new Vec(a.x() / t, a.y() / t, a.z() / t);
     }
 
-    public static float dot(Vec a, Vec b) {
+    public static double dot(Vec a, Vec b) {
         return a.x() * b.x() + a.y() * b.y() + a.z() * b.z();
     }
 
@@ -145,14 +145,14 @@ public class Vec {
         return this;
     }
 
-    public Vec mul(float t) {
+    public Vec mul(double t) {
         e[0] *= t;
         e[1] *= t;
         e[2] *= t;
         return this;
     }
 
-    public Vec div(float t) {
+    public Vec div(double t) {
         e[0] /= t;
         e[1] /= t;
         e[2] /= t;
@@ -160,9 +160,9 @@ public class Vec {
     }
 
     public Vec sqrt() {
-        e[0] = (float) Math.sqrt(e[0]);
-        e[1] = (float) Math.sqrt(e[1]);
-        e[2] = (float) Math.sqrt(e[2]);
+        e[0] = Math.sqrt(e[0]);
+        e[1] = Math.sqrt(e[1]);
+        e[2] = Math.sqrt(e[2]);
         return this;
     }
 
@@ -170,7 +170,7 @@ public class Vec {
         return Vec.div(v, v.length());
     }
 
-    public void clamp(float min, float max) {
+    public void clamp(double min, double max) {
         if (e[0] < min)
             e[0] = min;
         else if (e[0] > max)
