@@ -46,10 +46,10 @@ public class ImageBuffer {
             for (int j = height - 1; j >= 0; j--) {
                 for (int i = 0; i < width; i++) {
                     PixelRGB col = getPixel(i, j);
-                    col.clamp(0.0f, 0.999999f);
-                    int ir = (int) (255.99 * col.get(0));
-                    int ig = (int) (255.99 * col.get(1));
-                    int ib = (int) (255.99 * col.get(2));
+                    col.clamp(0.0f, 255.999999f);
+                    int ir = (int) (col.get(0));
+                    int ig = (int) (col.get(1));
+                    int ib = (int) (col.get(2));
                     output.write(ir + " " + ig + " " + ib + "\n");
                 }
             }
