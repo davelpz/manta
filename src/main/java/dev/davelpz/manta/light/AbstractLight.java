@@ -6,7 +6,7 @@ public abstract class AbstractLight {
 
     private double intensity;
 
-    public abstract double compute(Vec p, Vec n);
+    public abstract double compute(Vec p, Vec n, Vec v, int s);
 
     public double getIntensity() {
         return intensity;

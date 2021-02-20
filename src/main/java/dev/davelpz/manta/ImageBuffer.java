@@ -17,7 +17,8 @@ public class ImageBuffer {
         this.background = background;
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                setPixel(x, y, background);
+                //setPixel(x, y, background);
+                buffer[x][y] = background;
             }
         }
     }
@@ -31,7 +32,9 @@ public class ImageBuffer {
     }
 
     public void setPixel(int x, int y, PixelRGB pixel) {
-        //System.out.println(""+x+","+y+","+pixel);
+        if (pixel.r() < 50 && pixel.g() < 50 && pixel.b() < 50) {
+            System.out.println(""+x+","+y+","+pixel);
+        }
         buffer[x][y] = pixel;
     }
 
@@ -46,10 +49,14 @@ public class ImageBuffer {
             for (int j = height - 1; j >= 0; j--) {
                 for (int i = 0; i < width; i++) {
                     PixelRGB col = getPixel(i, j);
-                    col.clamp(0.0f, 255.999999f);
+                    col.clamp(0.0f, 255.9f);
                     int ir = (int) (col.get(0));
                     int ig = (int) (col.get(1));
                     int ib = (int) (col.get(2));
+                    //if (ir > 255 || ig > 255 || ib > 255) {
+                    //    System.out.println(""+i+","+j+","+col);
+                    //}
+
                     output.write(ir + " " + ig + " " + ib + "\n");
                 }
             }

@@ -8,7 +8,7 @@ public class AmbientLight extends AbstractLight {
         setIntensity(intensity);
     }
 
-    @Override public double compute(Vec p, Vec n) {
+    @Override public double compute(Vec p, Vec n, Vec v, int s) {
         return getIntensity();
     }
 }

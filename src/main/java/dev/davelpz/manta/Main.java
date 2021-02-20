@@ -16,19 +16,19 @@ public class Main {
     static double d = 1;
     static double vw = 1;
     static double vh = 1;
-    static double cw = 750;
-    static double ch = 750;
+    static double cw = 1000;
+    static double ch = 1000;
     static PixelRGB background = new PixelRGB(255, 255, 255);
 
     public static Vec canvasToViewport(int x, int y) {
         return new Vec(x * (vw / cw), y * (vh / ch), d);
     }
 
-    public static double computeLighting(Vec p, Vec n, List<AbstractLight> lights) {
+    public static double computeLighting(Vec p, Vec n, Vec v, int s, List<AbstractLight> lights) {
         double i = 0.0;
 
         for (AbstractLight l : lights) {
-            i += l.compute(p, n);
+            i += l.compute(p, n, v, s);
         }
 
         return i;
@@ -59,7 +59,7 @@ public class Main {
         Vec p = Vec.add(origin, Vec.mul(closest_t, d));
         Vec n = Vec.sub(p, closest_sphere.getCenter());
         n.make_unit_vector();
-        return PixelRGB.mul(closest_sphere.getColor(), computeLighting(p, n, lights));
+        return PixelRGB.mul(closest_sphere.getColor(), computeLighting(p, n, Vec.neg(d), closest_sphere.getSpecular(), lights));
     }
 
     public static Tuple2<Double, Double> intersectRaySphere(Vec origin, Vec d, Sphere sphere) {
@@ -84,10 +84,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         ImageBuffer buffer = new ImageBuffer(cw, ch);
         List<Sphere> spheres = new ArrayList<>();
-        spheres.add(new Sphere(new Vec(0, -1, 3), 1, new PixelRGB(255, 0, 0)));
-        spheres.add(new Sphere(new Vec(2, 0, 4), 1, new PixelRGB(0, 0, 255)));
-        spheres.add(new Sphere(new Vec(-2, 0, 4), 1, new PixelRGB(0, 255, 0)));
-        spheres.add(new Sphere(new Vec(0, -5001, 0), 5000, new PixelRGB(255, 255, 0)));
+        spheres.add(new Sphere(new Vec(0, -1, 3), 1, new PixelRGB(255, 0, 0), 500));
+        spheres.add(new Sphere(new Vec(2, 0, 4), 1, new PixelRGB(0, 0, 255), 500));
+        spheres.add(new Sphere(new Vec(-2, 0, 4), 1, new PixelRGB(0, 255, 0), 10));
+        spheres.add(new Sphere(new Vec(0, -5001, 0), 5000, new PixelRGB(255, 255, 0), 1000));
 
         List<AbstractLight> lights = new ArrayList<>();
         lights.add(new AmbientLight(0.2));
