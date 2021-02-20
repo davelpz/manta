@@ -67,9 +67,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         ImageBuffer buffer = new ImageBuffer(cw, ch);
         List<Sphere> spheres = new ArrayList<>();
-        spheres.add(new Sphere(new Vec(0, -1, 3), 1, new PixelRGB(255, 0, 0)));
-        spheres.add(new Sphere(new Vec(2, 0, 4), 1, new PixelRGB(0, 0, 255)));
-        spheres.add(new Sphere(new Vec(-2, 0, 4), 1, new PixelRGB(0, 255, 0)));
+        spheres.add(new Sphere(new Vec(0, -1, 3), 1, new PixelRGB(255, 0, 0), 500));
+        spheres.add(new Sphere(new Vec(2, 0, 4), 1, new PixelRGB(0, 0, 255), 500));
+        spheres.add(new Sphere(new Vec(-2, 0, 4), 1, new PixelRGB(0, 255, 0), 10));
 
         int cwOffset = (int) (cw/2);
         int chOffset = (int) (ch/2);
